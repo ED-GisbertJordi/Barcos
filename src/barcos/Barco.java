@@ -3,7 +3,7 @@ package barcos;
 /**
  * @author Jordi Gisbert Ferriz
  */
-public class Barco {
+public abstract class Barco{
     protected String nombre;
     protected String matricula;
     protected Data anyoConstruccion;
@@ -27,6 +27,12 @@ public class Barco {
     
     public void realizarMantenimiento(){
         this.horasMantenimiento += 100;
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        Barco barco = (Barco) object;
+        return (this.matricula.equals(barco.matricula));
     }
     
     
