@@ -8,10 +8,10 @@ import barcos.*;
  */
 public class Flota {
 
-    Barco[] barcos = new Barco[1];
+    Barco[] barcos;
 
-    public Flota(Barco barcos) {
-        this.barcos[0] = barcos;
+    public Flota(Barco[] barcos) {
+        this.barcos = barcos;
     }
 
     public void mantenimientoGeneral(){
@@ -20,7 +20,7 @@ public class Flota {
         }
     }
     
-    public int calculoManteniemiento(){
+    public double calculoManteniemiento(){
         int total = 0;
         for (Barco barco : barcos) {
             if (barco instanceof BarcoPesca barcoPesca) {
@@ -34,21 +34,29 @@ public class Flota {
     }
     
     public void mostrarBarcos(){
-        System.out.println(Arrays.toString(barcos));
+        int numero = 0;
+        for (int i = 0; i<barcos.length; i++) {
+            System.out.println(numero+") "+barcos[i]);
+            numero++;
+        }
     }
     
     public void mostrarBarcosDeGuerra(){
+        int numero = 0;
         for (Barco barco : barcos) {
             if (barco instanceof BarcoGuerra) {
-                System.out.println(barco);
+                System.out.println(numero+") "+barco);
+                numero++;
             }
         }
     }
     
     public void mostrarBarcosDePesca(){
+        int numero = 0;
         for (Barco barco : barcos) {
             if (barco instanceof BarcoPesca) {
-                System.out.println(barco);
+                System.out.println(numero+") "+barco);
+                numero++;
             }
         }
     }
@@ -108,7 +116,7 @@ public class Flota {
         return resultado;
     }
 
-    public Object[] borrarLinea(Object[] array, int indice) {
+    private Object[] borrarLinea(Object[] array, int indice) {
         if (indice < 0 || indice >= array.length) {
             return new Object[0];
         }
