@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Barcos" default="compile" basedir=".">
+    <description>Builds, tests, and runs the project Barcos.</description>
+    <import file="nbproject/build-impl.xml"/>
+    
+    <!-- Compilar el proyecto -->
+    <target name="compile" depends="init,compile.src"/>
+    
+    <target name="init">
+        <!-- Crea el directorio de compilación si no existe -->
+        <mkdir dir="${build.dir}"/>
+    </target>
+    
+    <target name="compile.src" depends="init">
+        <!-- Compila las clases Java ubicadas en src y las coloca en el directorio de compilación -->
+        <javac srcdir="src" destdir="${build.dir}" includeantruntime="false">
+            <classpath>
+                <pathelement location="lib/"/> <!-- Añade aquí tus dependencias si las tienes -->
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Empaquetar el proyecto en un archivo JAR -->
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="main"/> <!-- Cambia 'main' por la clase principal de tu aplicación -->
+            </manifest>
+        </jar>
+    </target>
+    
+</project>
